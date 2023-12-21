@@ -1,9 +1,12 @@
 import os
+from dotenv import load_dotenv
 from functools import partial
 
 from openai import OpenAI
+# Load the .env file
+load_dotenv()
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def send_question(question: str) -> dict:
     return client.chat.completions.create(model="gpt-3.5-turbo-1106",
